@@ -1,25 +1,84 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { useState, useEffect } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from './components/header';
+import SideBar from './components/SideBar';
+import MainContain from './components/mainContain';
+import NavSearch from './components/nav';
+
+function App ()
+{
+  const [animeList, SetAnimeList] = useState([]);
+  const [topAnime, setTopAnime] = useState([]);
+  const [search, setSearch] = useState('');
+
+  const [showResults, setShowResults] = React.useState(true);
+  const onClick = () => setShowResults(!showResults);
+
+
+  const GetTopAnime = async () =>
+  {
+    const temp = await fetch('https://api.jikan.moe/v3/top/anime/1/bypopularity')
+    .then(res => res.json());
+
+    setTopAnime(temp.top.slice(0,5));
+  }
+
+  useEffect(() => {
+    GetTopAnime();
+  }, [])
+
+  const handleSearch = e =>
+  {
+    e.preventDefault();
+
+    FetchAnime(search); 
+  }
+
+  const FetchAnime = async (query) => 
+  {
+    const temp = await fetch(`https://api.jikan.moe/v3/search/anime?q=${query}&order_by=title&sort=asc&limit=20}`)
+      .then( temp => temp.json());
+    console.log(temp.results);
+    SetAnimeList(temp.results);
+    onClick();
+  }
+
+    return(
+      <React.Fragment>
+        <div className='container-main'>
+          <SideBar topAnime={topAnime}/>
+          <div>
+          <Header/>
+            <NavSearch 
+              handleSearch={handleSearch}
+              setSearch={setSearch}
+              search={search}
+            />          
+
+            {showResults ?  
+              <div className='searchEmptyContainer'>
+                <div>
+                  <span className='searchEmpty searchEmptyLogo'>&lt;/&gt;</span> 
+                  <br></br>
+                  <span className='searchEmpty searchEmptyText'>Buscá algo! Naruto esta esperándote.</span>
+                </div>
+              </div>
+            :null}
+         
+         
+
+            {/*<SearchEmpty/>*/}<MainContain 
+              search={search}
+              setSearch={setSearch}
+              animeList={animeList}
+              animeList={animeList}
+            />
+          </div>
+        </div>
+      </React.Fragment>
+    );   
 }
 
 export default App;
+
