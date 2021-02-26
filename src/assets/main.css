@@ -188,8 +188,8 @@ main form input::placeholder {
   align-items: center;
   display: flex;
   justify-content: center;
+  margin-top: 6vw;
   text-align: center;
-  height: 50%;
 }
 .searchEmpty {
   color: white;
@@ -199,4 +199,9 @@ main form input::placeholder {
   color: Red;
   font-size: 10vw;
   letter-spacing: 0.001px;
+}
+/* Top anime */
+.title-component {
+  color: white;
+  font-weight: bolder;
 }
