@@ -1,38 +1,28 @@
 import React from 'react'
 
-import topAnime from './topAnime';
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-  } from "react-router-dom";
-
 function NavSearch(props) {
+    console.log('aaa' + props.form);
     return (
-            <Router>
         <main>
             <div className='container-nav'>
                 <nav className='nav-items'>
 
-                        <Switch>
-                           <Route path='/top' component={topAnime}/>
-                        </Switch>
-
-                    <span> Inicio </span>
-                    <span> Top anime </span>
+                 <a href='/'><span>Inicio</span></a>
+                 <a href='top'><span> Top anime </span></a>
                     <span> Contacto </span>
                     <span> Buscar </span>
                 </nav>
+
+                {props.form == true &&
                 <form onSubmit={props.handleSearch}>
                     <input type='search' placeholder='Buscar un anime...' required
                         value={props.search} 
                         onChange={e => props.setSearch(e.target.value)}
                     />
                 </form>
-            </div>
+                }
+                </div>
         </main>
-            </Router>
     )
 }
 

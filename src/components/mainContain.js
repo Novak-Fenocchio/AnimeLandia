@@ -1,8 +1,10 @@
 import React from 'react'
+import Nav from './nav';
 
 function mainContain(props) {
 
     return (
+        <React.Fragment>
         <React.Fragment>
         <h1 className='title-component'>Animes de {props.searchAnimeTitle}:</h1>
         <div className='container-episodies'>
@@ -23,6 +25,7 @@ function mainContain(props) {
                 ))}
                     
         </div>
+        </React.Fragment>
         </React.Fragment>
     )
 }
