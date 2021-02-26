@@ -3,7 +3,10 @@ import React from 'react'
 function mainContain(props) {
 
     return (
+        <React.Fragment>
+        <h1 className='title-component'>Animes de {props.searchAnimeTitle}:</h1>
         <div className='container-episodies'>
+
                 {props.animeList.map(anime =>(
                    
                         <article className='episodie'>
@@ -19,7 +22,8 @@ function mainContain(props) {
                        </article>
                 ))}
                     
-                </div>
+        </div>
+        </React.Fragment>
     )
 }
 
