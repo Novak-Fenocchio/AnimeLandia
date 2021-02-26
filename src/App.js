@@ -13,7 +13,7 @@ function App ()
   const [search, setSearch] = useState('');
 
   const [showResults, setShowResults] = React.useState(true);
-  const onClick = () => setShowResults(!showResults);
+  const onClick = () => setShowResults(false);
 
 
   const GetTopAnime = async () =>
@@ -39,8 +39,16 @@ function App ()
   {
     const temp = await fetch(`https://api.jikan.moe/v3/search/anime?q=${query}&order_by=title&sort=asc&limit=20}`)
       .then( temp => temp.json());
+
+      if(temp) {
+        console.log('success');
+        SetAnimeList(temp.results);
+      }
+      else
+      {
+        console.log('error');
+      }
     console.log(temp.results);
-    SetAnimeList(temp.results);
     onClick();
   }
 
@@ -48,32 +56,31 @@ function App ()
       <React.Fragment>
         <div className='container-main'>
           <SideBar topAnime={topAnime}/>
-          <div>
-          <Header/>
-            <NavSearch 
-              handleSearch={handleSearch}
-              setSearch={setSearch}
-              search={search}
-            />          
+          <div className='container-no-aside'>
+          
+              <Header/>
+              <NavSearch 
+                handleSearch={handleSearch}
+                setSearch={setSearch}
+                search={search}
+              />          
 
-            {showResults ?  
-              <div className='searchEmptyContainer'>
-                <div>
-                  <span className='searchEmpty searchEmptyLogo'>&lt;/&gt;</span> 
-                  <br></br>
-                  <span className='searchEmpty searchEmptyText'>Buscá algo! Naruto esta esperándote.</span>
+              {showResults ?  
+                <div className='searchEmptyContainer'>
+                  <div>
+                    <span className='searchEmpty searchEmptyLogo'>&lt;/&gt;</span> 
+                    <br></br>
+                    <span className='searchEmpty searchEmptyText'>Buscá algo! Naruto esta esperándote.</span>
+                  </div>
                 </div>
-              </div>
-            :null}
-         
-         
-
-            {/*<SearchEmpty/>*/}<MainContain 
-              search={search}
-              setSearch={setSearch}
-              animeList={animeList}
-              animeList={animeList}
-            />
+              :null}
+          
+              <MainContain 
+                search={search}
+                setSearch={setSearch}
+                animeList={animeList}
+                animeList={animeList}
+              />
           </div>
         </div>
       </React.Fragment>
