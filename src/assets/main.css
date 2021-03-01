@@ -204,10 +204,56 @@ main form input::placeholder {
 }
 /* Top anime */
 .container-top-animes {
-  display: block;
 }
 .title-component {
   color: white;
   font-weight: bolder;
   padding: 1.5vw 5vw 0vw;
+}
+
+/* Episodie horizontal */
+.container-episodies-horizontal {
+  display: flex;
+  padding: 2vw 5vw;
+}
+ul.slider {
+  position: relative;
+  width: 100%;
+}
+ul.slider article {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.slider article:first-child {
+  opacity: 1;
+}
+ul.slider article:target {
+  opacity: 1; /*Mostramos el <li> del enlace que pulsemos*/
+}
+.episodie-horizontal {
+}
+.menu {
+  text-align: center;
+  margin: 20px;
+}
+
+.menu li {
+  display: inline-block;
+  text-align: center;
+}
+
+.menu li a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  background-color: grey;
+  padding: 10px;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  border-radius: 100%;
+}
+.white {
+  color: wheat;
 }

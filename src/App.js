@@ -10,29 +10,14 @@ import {
 import Header from './components/header';
 import SideBar from './components/SideBar';
 import TopAnime from './components/topAnime';
-import Nav from './components/nav';
+import Categories from './components/categories';
 
 import Index from './components/index.compontent';
 
 function App ()
 {
-  const [animeList, SetAnimeList] = useState([]);
-  const [search, setSearch] = useState('');
-  let [searchAnimeTitle, SetSearchAnimeTitle] = useState('');
-  let [searchEmpty, SetSearchEmpty] = useState(true);
-  let [pageActual,SetPageActual] = useState('/');
-
 
   const [topAnime, setTopAnime] = useState([]);
-
-  const handleSearch = e =>
-  {
-    e.preventDefault();
-    console.log('aa');
-    const changeAnime = () => SetSearchAnimeTitle(search);
-    changeAnime();
-    FetchAnime(search); 
-  }
 
   const GetTopAnime = async () =>
   {
@@ -40,34 +25,13 @@ function App ()
     .then(res => res.json());
 
     setTopAnime(temp.top.slice(0,5));
+    console.log(topAnime);
   }
 
   useEffect(() => {
     GetTopAnime();
   }, [])
 
-  const fillSearch = () =>
-  {
-      const searchActivate = () => SetSearchEmpty(false);
-      searchActivate();
-  }
-
-  const FetchAnime = async (query) => 
-  {
-    const temp = await fetch(`https://api.jikan.moe/v3/search/anime?q=${query}&order_by=title&sort=asc&limit=20}`)
-      .then( temp => temp.json());
-
-      if(temp) {
-        console.log('success');
-        SetAnimeList(temp.results);
-      }
-      else
-      {
-        console.log('error');
-      }
-      fillSearch();
-    console.log(temp.results);
-  }
 
     return(
       <React.Fragment>
@@ -78,10 +42,13 @@ function App ()
              
             <Router>
               <Switch>
-                  <Route path='/top'>
+                  <Route path='/top-anime'>
                     <TopAnime 
                       topAnime={topAnime}
                     />
+                  </Route>
+                  <Route path='/top-manga'>
+                     <Categories/>
                   </Route>
                   <Route path='/' exact component={Index}/>
               </Switch>

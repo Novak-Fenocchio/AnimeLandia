@@ -3,7 +3,7 @@ import React from 'react'
 function header() {
     return (
         <header>
-            <h1>El<strong>Anime</strong>DeFeno</h1>
+            <h1>El<strong>Anime</strong>DeNoe</h1>
         </header>
     )
 }
