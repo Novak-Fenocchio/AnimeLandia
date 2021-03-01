@@ -7,8 +7,7 @@ import {
   Route
 } from "react-router-dom";
 
-import Header from './components/header';
-import SideBar from './components/SideBar';
+import TopManga from './components/topManga';
 import TopAnime from './components/topAnime';
 import Categories from './components/categories';
 import Dashboard from './components/dashboard'
@@ -38,10 +37,13 @@ function App ()
                   <Route path='/top-anime'>
                     <TopAnime topAnime={topAnime}/>
                   </Route>
-                  <Route path='/top-manga'>
+                  <Route path='/categorias'>
                      <Categories/>
                   </Route>
-                  <Router path='/buscar' component={Index}/>
+                  <Route path='/top-manga'>
+                    <TopManga/>
+                  </Route>
+                  <Router path='/buscar'><Index/></Router>
                   <Route path='/' exact component={Dashboard}/>
               </Switch>
             </Router>

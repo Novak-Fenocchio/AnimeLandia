@@ -2,6 +2,8 @@ import React from 'react';
 import { useState, useEffect } from "react";
 
 import Nav from './nav';
+import Sidebar from './SideBar'
+import Header from './header'
 
 function TopAnime() {
 
@@ -22,11 +24,13 @@ function TopAnime() {
     console.log(TopAnime);
 
     return (
-      <React.Fragment >
-        <Nav
-          form={false}
-        />
-      <div className='container-top-animes'>
+      <React.Fragment>
+      <Sidebar/>
+      <div className='container-main'>
+        <div className='container-no-aside'> 
+        <Header/>
+
+        <Nav form={false}/>
       <h1 className='title-component'>Tops anime:</h1>
       <div className='container-episodies'>
               {TopAnime.map(anime =>(
@@ -42,6 +46,7 @@ function TopAnime() {
                           </div>
                      </article>
               ))}
+      </div>
       </div>
       </div>
       </React.Fragment>

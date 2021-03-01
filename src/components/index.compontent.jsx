@@ -4,6 +4,8 @@ import {useState} from "react";
 import MainContain from './mainContain';
 import NavSearch from './nav';
 import SearchEmpty from './searchEmpty';
+import Sidebar from './SideBar'
+import Header from './header'
 
 function Index() {
 
@@ -46,6 +48,12 @@ function Index() {
 
 
     return (
+      <React.Fragment>
+      <Sidebar/>
+      <div className='container-main'>
+        <div className='container-no-aside'> 
+        <Header/>
+
         <div>
              <NavSearch
                 handleSearch={handleSearch}
@@ -65,6 +73,9 @@ function Index() {
               />
             }   
         </div>
+        </div>
+        </div>
+        </React.Fragment>
     )
 }
 

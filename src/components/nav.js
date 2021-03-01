@@ -9,7 +9,8 @@ function NavSearch(props) {
                  <a href='/'><span>Inicio</span></a>
                  <a href='top-anime'><span> Top anime </span></a>
                  <a href='top-manga'><span> Top manga </span></a>
-                    <span> Buscar </span>
+                 <a href='categorias'><span> Categorías </span></a>
+                 <a href='buscar'><span> Buscar </span></a>
                 </nav>
 
                 {props.form == true &&

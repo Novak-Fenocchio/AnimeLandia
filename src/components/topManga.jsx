@@ -1,71 +1,56 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import { useState, useEffect } from "react";
+
 import Nav from './nav';
+import Sidebar from './SideBar'
+import Header from './header'
 
-class TopManga extends React.Component() {
+function TopAnime() {
 
-    constructor()
+    const [TopAnime, setTopAnime] = useState([]);
+
+    const GetTopAnime = async () =>
     {
-      super();
-      this.state = {
-        TopManga : [],
-        AnimeCategory : []
-      }
-    }
-
-    render(){    
-    /*   
-    
-      const GetTopManga = async () =>
-      {
-        const temp = await fetch('https://api.jikan.moe/v3/top/manga/1/bypopularity')
-        .then(res => res.json())
-        this.setState.TopManga(temp.top.slice(0,15));
-      }
+      const temp = await fetch('https://api.jikan.moe/v3/top/manga/1/bypopularity')
+      .then(res => res.json());
   
-      const GetCategories = async () =>
-      {
-        const temp = await fetch('https://api.jikan.moe/v3/genre/anime/1/1')
-        .then(res => res.json())
-    
-        this.setState.AnimeCategory(temp.anime.slice(0,10));
-      }
-     
-        GetTopManga();
-        GetCategories();
-     */
-/*       console.log(this.AnimeCategory); */
+      setTopAnime(temp.top.slice(0,15));
+    }
+  
+    useEffect(() => {
+      GetTopAnime();
+    }, [])
+
+    console.log(TopAnime);
 
     return (
-      <React.Fragment >
-        <Nav
-          form={false}
-        />
-      <div className='container-top-animes'>
+      <React.Fragment>
+      <Sidebar/>
+      <div className='container-main'>
+        <div className='container-no-aside'> 
+        <Header/>
+
+        <Nav form={false}/>
       <h1 className='title-component'>Tops manga:</h1>
-      <div className='container-episodies-horizontal'>
-        <ul className='slider'>
-        <h1 className='white'>EEEa</h1>
-        </ul>
-        
-        <ul className="menu">
-        <li>
-          <a href="#slide1">1</a>
-        </li>
-        <li>
-          <a href="#slide2">2</a>
-        </li>
-        <li>
-          <a href="#slide3">3</a>
-        </li>
-      </ul>
+      <div className='container-episodies'>
+              {TopAnime.map(anime =>(
+                      <article className='episodie'>
+                          <img src={anime.image_url}/>
+                          <h2 className='anime_title'>{anime.title.slice(0,18)}</h2>
+                          <h4 className='anime_info anime_episodes'>Volumenes: <span> {anime.volumes}</span></h4>
+                          <h5 className='anime_info anime_year'>Año: <span> {anime.start_date.slice(0,8)}</span></h5>
+                          <div className='container-btn'>
+                          <a key={anime.mal_id} href={anime.url} target='blank'>
+                              <button className='verAnimeBtn'>Ver manga</button>
+                          </a>
+                          </div>
+                     </article>
+              ))}
+      </div>
       </div>
       </div>
       </React.Fragment>
-    );
-    }
-
+    )
 }
 
-export default TopManga
+export default TopAnime
