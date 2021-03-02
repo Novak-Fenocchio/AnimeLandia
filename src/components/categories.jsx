@@ -46,7 +46,7 @@ export class Categories extends Component {
                 <div className='container-no-aside'> 
                 <Header/>
    
-                <Nav form={false}/>
+                <Nav form={false} actualPage='Categorias'/>
                 <section className='section-episodies-horizontal'>            
                 
                     <div className='container-episodies-horizontal'>

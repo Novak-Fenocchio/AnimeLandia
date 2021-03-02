@@ -59,7 +59,7 @@ function Index() {
                 handleSearch={handleSearch}
                 setSearch={setSearch}
                 search={search}
-                form={true}
+                form={true} actualPage='Buscar'
               />
             {searchEmpty &&
              <SearchEmpty/>

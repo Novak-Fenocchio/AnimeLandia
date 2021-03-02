@@ -21,7 +21,23 @@ a {
 .white {
   color: wheat;
 }
-
+.btn-rojo {
+  background: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: black;
+  font-size: 1.5vw;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  padding: 0.7vw 2vw;
+  width: 40%;
+}
+.btn-rojo:hover {
+  background: rgb(250, 14, 14);
+  border: 2px solid rgb(250, 14, 14);
+  color: white;
+  transform: scale(1.05);
+}
 /* Main */
 body {
   background-color: black;
@@ -35,6 +51,10 @@ body {
   left: 20vw;
   padding-left: 1vw;
   width: 78.7vw;
+}
+a .actualPage {
+  color: red;
+  font-weight: bolder;
 }
 /* Header */
 header {
@@ -125,7 +145,7 @@ main form input::placeholder {
   font-size: 1.6vw;
   margin-left: 4vw;
 }
-.nav-items span {
+.nav-item {
   color: white;
   border-radius: 5px;
   margin-right: 0.5vw;
@@ -347,4 +367,8 @@ main form input::placeholder {
 }
 .welcome-image img {
   width: 100%;
+}
+/* Ver más */
+.container-button {
+  text-align: center;
 }

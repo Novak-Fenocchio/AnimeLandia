@@ -8,18 +8,27 @@ import Header from './header'
 function TopAnime() {
 
     const [TopAnime, setTopAnime] = useState([]);
+    let [AmountAnime, SetAmountAnime] = useState(15);
 
-    const GetTopAnime = async () =>
+    const GetTopAnime = async (ama) =>
     {
-      const temp = await fetch('https://api.jikan.moe/v3/top/anime/1/bypopularity')
+      const temp = await fetch(`https://api.jikan.moe/v3/top/anime/1/bypopularity`)
       .then(res => res.json());
-  
-      setTopAnime(temp.top.slice(0,15));
+      console.log(AmountAnime);
+      setTopAnime(temp.top.slice(0,AmountAnime));
     }
   
     useEffect(() => {
-      GetTopAnime();
+      GetTopAnime(AmountAnime);
     }, [])
+
+    const verMas = async() =>
+    {
+      const temp = await fetch(`https://api.jikan.moe/v3/top/anime/1/bypopularity`)
+      .then(res => res.json());
+      console.log(AmountAnime);
+      setTopAnime(temp.top.slice(0,50));
+    }
 
     console.log(TopAnime);
 
@@ -30,7 +39,7 @@ function TopAnime() {
         <div className='container-no-aside'> 
         <Header/>
 
-        <Nav form={false}/>
+        <Nav form={false} actualPage='TopAnime'/>
       <h1 className='title-component'>Tops anime:</h1>
       <div className='container-episodies'>
               {TopAnime.map(anime =>(
@@ -47,6 +56,9 @@ function TopAnime() {
                      </article>
               ))}
       </div>
+        <div className="container-button">
+         <button className='btn-rojo btn-ver-mas' onClick={verMas}>Ver más</button>
+        </div>
       </div>
       </div>
       </React.Fragment>

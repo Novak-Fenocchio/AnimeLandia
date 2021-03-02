@@ -17,6 +17,13 @@ function TopAnime() {
       setTopAnime(temp.top.slice(0,15));
     }
   
+    const verMas = async() =>
+    {
+      const temp = await fetch(`https://api.jikan.moe/v3/top/manga/1/bypopularity`)
+      .then(res => res.json());
+      setTopAnime(temp.top.slice(0,50));
+    }
+
     useEffect(() => {
       GetTopAnime();
     }, [])
@@ -30,7 +37,7 @@ function TopAnime() {
         <div className='container-no-aside'> 
         <Header/>
 
-        <Nav form={false}/>
+        <Nav form={false} actualPage='TopManga'/>
       <h1 className='title-component'>Tops manga:</h1>
       <div className='container-episodies'>
               {TopAnime.map(anime =>(
@@ -47,6 +54,9 @@ function TopAnime() {
                      </article>
               ))}
       </div>
+      <div className="container-button">
+         <button className='btn-rojo btn-ver-mas' onClick={verMas}>Ver más</button>
+        </div>
       </div>
       </div>
       </React.Fragment>
